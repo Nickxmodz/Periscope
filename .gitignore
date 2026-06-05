@@ -1,0 +1,37 @@
+# PyInstaller build artifacts
+build/
+dist/
+*.spec
+*.7z
+build_log.txt
+
+# MediaPipe model — auto-downloads on first run / build (see build.bat)
+face_landmarker.task
+
+# Generated icon preview (the .ico is committed; the .png is just a preview)
+assets/periscope.png
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+build-venv/
+venv/
+.venv/
+env/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local tooling
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
