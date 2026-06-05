@@ -430,8 +430,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;margin-top:40px}
 const CONFIG = {
   name:     "Periscope",
   repo:     "https://github.com/Nickxmodz/Periscope",
-  download: "https://github.com/Nickxmodz/Periscope/releases/latest",
-  hasRelease: false,   // flip to true once you publish a prebuilt .exe on Releases
+  download: "https://github.com/Nickxmodz/Periscope/releases/latest/download/Periscope.exe",
+  hasRelease: true,   // flip to true once you publish a prebuilt .exe on Releases
 };
 // wire the links
 document.getElementById('brandName').textContent = CONFIG.name;
@@ -443,7 +443,7 @@ const dl = document.getElementById('dlBtn');
 if (CONFIG.hasRelease){
   dl.textContent = "↓ Download for Windows"; dl.href = CONFIG.download;
   document.getElementById('footRel').textContent = "Releases";
-  document.getElementById('footRel').href = CONFIG.download;
+  document.getElementById('footRel').href = CONFIG.repo + "/releases";
 } else {
   dl.textContent = "★ View on GitHub"; dl.href = CONFIG.repo;
   document.getElementById('footRel').textContent = "Source";
