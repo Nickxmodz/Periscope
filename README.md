@@ -32,9 +32,9 @@ The MediaPipe model auto-downloads on first run. Settings save to `%APPDATA%\Per
 
 | Key  | Action                                                  |
 |------|---------------------------------------------------------|
+| F8   | Emergency stop — kills tracking, releases the mouse     |
 | F9   | Toggle tracking                                         |
 | F10  | Recenter — sets current head pose as neutral            |
-| F8   | Emergency stop — kills tracking, releases the mouse     |
 
 ## Building the executable
 
