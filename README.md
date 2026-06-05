@@ -2,7 +2,9 @@
 
 Webcam-based head tracking built for **Forza Horizon 6**. Look into the apex without taking your hands off the wheel — no TrackIR, no extra hardware.
 
-**[→ Project site & live demo](https://Nickxmodz.github.io/Periscope/)**
+**[⬇ Download Periscope.exe](https://github.com/Nickxmodz/Periscope/releases/latest/download/Periscope.exe)** &nbsp;·&nbsp; **[→ Project site & live demo](https://Nickxmodz.github.io/Periscope/)**
+
+[![Download](https://img.shields.io/github/v/release/Nickxmodz/Periscope?label=download&logo=windows&style=for-the-badge)](https://github.com/Nickxmodz/Periscope/releases/latest/download/Periscope.exe)
 
 ## What it does
 
@@ -12,7 +14,7 @@ Reads your head yaw from any webcam via MediaPipe, maps it to mouse movement, an
 
 ### From a release (recommended)
 
-1. Download `Periscope.exe` from the [latest release](../../releases).
+1. [**Download `Periscope.exe`**](https://github.com/Nickxmodz/Periscope/releases/latest/download/Periscope.exe) (or browse [all releases](../../releases)).
 2. Launch — Windows will ask for camera permission. Allow it.
 3. In your game, switch to cockpit/interior view and bind free-look to Right Mouse Button.
 4. Press **F9** to start tracking.
