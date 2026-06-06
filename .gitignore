@@ -31,6 +31,9 @@ env/
 # Local tooling
 .claude/
 
+# Source demo clips — the site serves its own copy from docs/
+demo/
+
 # OS
 .DS_Store
 Thumbs.db
