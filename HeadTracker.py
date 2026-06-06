@@ -109,6 +109,26 @@ def yaw_from_matrix(M):
     sy = math.sqrt(R[0, 0] ** 2 + R[1, 0] ** 2)
     return math.degrees(math.atan2(-R[2, 0], sy))
 
+def blur_background(frame, lms, w, h, amount):
+    """Blur everything except the head. We don't have a body-segmentation model
+    here, but the face landmarks give us the head region for free: take their
+    convex hull, dilate it to cover the whole head, feather the edge, and
+    alpha-composite the sharp head over a Gaussian-blurred copy of the frame.
+    With no face detected we just blur the whole frame."""
+    k = max(3, int(amount)) | 1                      # GaussianBlur needs an odd kernel
+    blurred = cv2.GaussianBlur(frame, (k, k), 0)
+    if not lms:
+        return blurred
+    pts = np.array([(int(lm.x * w), int(lm.y * h)) for lm in lms], dtype=np.int32)
+    mask = np.zeros((h, w), dtype=np.uint8)
+    cv2.fillConvexPoly(mask, cv2.convexHull(pts), 255)
+    grow = max(8, int(min(w, h) * 0.10))             # expand past the face onto the head
+    mask = cv2.dilate(mask, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (grow, grow)))
+    feather = max(3, int(min(w, h) * 0.08)) | 1      # soft edge so the cutout isn't obvious
+    mask = cv2.GaussianBlur(mask, (feather, feather), 0)
+    alpha = (mask.astype(np.float32) / 255.0)[..., None]
+    return (frame * alpha + blurred * (1.0 - alpha)).astype(np.uint8)
+
 # ============================ tracking engine ============================
 class TrackerEngine:
     """Runs the camera + tracking on its own thread. The GUI only reads
@@ -131,6 +151,8 @@ class TrackerEngine:
         self.lookahead_ms = 50.0       # predict yaw forward by this much to hide pipeline lag
         self.use_gpu = True            # try GPU delegate for MediaPipe (falls back to CPU)
         self.show_overlay = True
+        self.blur_background = False    # blur the room behind your head in the preview
+        self.blur_amount = 35           # Gaussian kernel size; higher = blurrier
         self.tracking = False          # the F9 toggle: are we driving the mouse?
 
         # runtime state (GUI reads these)
@@ -351,6 +373,9 @@ class TrackerEngine:
 
                 prev_tracking = self.tracking
 
+                if self.blur_background:
+                    frame = blur_background(frame, lms, w, h, self.blur_amount)
+
                 if self.show_overlay and lms is not None and yaw is not None:
                     for lm in lms:
                         cv2.circle(frame, (int(lm.x * w), int(lm.y * h)), 1, (0, 255, 0), -1)
@@ -380,12 +405,14 @@ SLIDERS = [
     ("mincutoff",    "Smoothing: min cutoff", 0.1, 5.0,  False),
     ("beta",         "Smoothing: beta",       0.0, 0.5,  False),
     ("lookahead_ms", "Lookahead (ms)",        0.0, 250.0, False),
+    ("blur_amount",  "Background blur amount", 3.0, 99.0, True),
 ]
 # (attr_name, label)
 CHECKS = [
     ("invert_yaw",          "Invert left / right"),
     ("recenter_on_release", "Recenter on release"),
     ("show_overlay",        "Show face overlay"),
+    ("blur_background",     "Blur background"),
     ("use_gpu",             "Use GPU (restart camera)"),
 ]
 SAVE_KEYS = [s[0] for s in SLIDERS] + [c[0] for c in CHECKS] + ["cam_index"]

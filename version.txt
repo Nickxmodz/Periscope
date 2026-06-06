@@ -5,8 +5,8 @@
 # Bump the four-part numbers in filevers/prodvers and the string values together.
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(1, 0, 0, 0),
-    prodvers=(1, 0, 0, 0),
+    filevers=(1, 1, 0, 0),
+    prodvers=(1, 1, 0, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -21,12 +21,12 @@ VSVersionInfo(
         u'040904B0',
         [StringStruct(u'CompanyName', u'Nickxmodz'),
         StringStruct(u'FileDescription', u'Periscope — webcam head tracking for Forza Horizon 6'),
-        StringStruct(u'FileVersion', u'1.0.0.0'),
+        StringStruct(u'FileVersion', u'1.1.0.0'),
         StringStruct(u'InternalName', u'Periscope'),
         StringStruct(u'LegalCopyright', u'Copyright © 2026 Nickxmodz. MIT License.'),
         StringStruct(u'OriginalFilename', u'Periscope.exe'),
         StringStruct(u'ProductName', u'Periscope'),
-        StringStruct(u'ProductVersion', u'1.0.0.0')])
+        StringStruct(u'ProductVersion', u'1.1.0.0')])
       ]),
     VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
   ]
