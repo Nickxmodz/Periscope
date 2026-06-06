@@ -120,14 +120,20 @@ section{padding:88px 0}
   background:#04070a;box-shadow:0 30px 80px rgba(0,0,0,.5);margin-bottom:24px
 }
 .reel video{display:block;width:100%;height:auto;aspect-ratio:854/480;object-fit:cover}
-.reel .frame-line{position:absolute;border:1px solid rgba(200,255,46,.18);inset:10px;border-radius:5px;pointer-events:none}
-.reel .tag{
+.shot{
+  position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  background:#04070a;box-shadow:0 30px 80px rgba(0,0,0,.5);max-width:760px;margin:0 auto 24px
+}
+.shot img{display:block;width:100%;height:auto}
+.reel .frame-line,.shot .frame-line{position:absolute;border:1px solid rgba(200,255,46,.18);inset:10px;border-radius:5px;pointer-events:none}
+.reel .tag,.shot .tag{
   position:absolute;top:14px;left:16px;display:inline-flex;align-items:center;gap:8px;
   font-family:var(--fmono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);
   background:rgba(8,10,11,.62);border:1px solid var(--acc-dim);padding:6px 11px;border-radius:99px;backdrop-filter:blur(6px)
 }
 .reel .tag .live{width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 10px var(--hot);animation:pulse 1.4s infinite}
-.reel-cap{font-family:var(--fmono);font-size:.72rem;color:var(--dim);letter-spacing:.06em;margin:-10px 0 30px}
+.shot .tag .sq{width:7px;height:7px;border-radius:2px;background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.reel-cap{font-family:var(--fmono);font-size:.72rem;color:var(--dim);letter-spacing:.06em;margin:-10px 0 30px;text-align:center}
 .demo-sub{display:flex;align-items:center;gap:14px;margin:6px 0 22px;color:var(--muted);font-weight:300;font-size:.96rem}
 .demo-sub::before{content:"";flex:0 0 28px;height:1px;background:var(--acc-dim)}
 .demo-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:24px}
@@ -288,7 +294,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;margin-top:40px}
     <div class="sec-head reveal">
       <span class="sec-num">01 / DEMO</span>
       <h2>Feel it<br>before you install</h2>
-      <p>Real in-game footage, then an interactive sim of the exact mapping the app runs, deadzone, response curve and all.</p>
+      <p>Real in-game footage and the app itself, then an interactive sim of the exact mapping it runs, deadzone, response curve and all.</p>
     </div>
     <div class="reel reveal">
       <video src="demo.mp4" autoplay muted loop playsinline preload="metadata" controls></video>
@@ -296,6 +302,12 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;margin-top:40px}
       <div class="tag"><span class="live"></span>Live footage · FH6</div>
     </div>
     <p class="reel-cap reveal">Webcam head tracking driving cockpit free-look in Forza Horizon 6 — no extra hardware.</p>
+    <div class="shot reveal">
+      <img src="app.png" alt="The Periscope app: live webcam preview with face-mesh overlay and yaw indicator, status bar, and the full tuning panel." width="897" height="627" loading="lazy">
+      <div class="frame-line"></div>
+      <div class="tag"><span class="sq"></span>The app · live preview + tuning</div>
+    </div>
+    <p class="reel-cap reveal">The control panel you actually run — live face-mesh preview with background blur, and every tuning slider on the right.</p>
     <div class="demo-sub reveal">Or play with the live simulation — drag the yaw control, or grab the view itself.</div>
     <div class="demo-grid reveal">
       <div class="screen">
